@@ -45,7 +45,7 @@ exports = module.exports = generators.Base.extend({
       message: 'What is your module\'s dasherized name ? Will use this as the main module name:',
       default : this.answers['generatorWebappNameWithDashes'],
       desc: 'Dasherized name of the webapp'
-    },, {
+    }, {
       name: 'generatorWebappDescription',
       message: 'What is your webapp\'s description ?',
       default : this.determineAppname(),
