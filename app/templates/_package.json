@@ -1,27 +1,22 @@
 {
-  "name": "bootstrap-backbone-starter-template",
+  "name": "<%= generatorWebappNameWithDashes %>",
   "version": "0.0.1",
-  "description": "Bootstrap and Backbone.js starter web app template.",
+  "description": "<%= generatorWebappDescription %>",
   "keywords": [
     "bootstrap",
     "backbone",
     "backbonejs",
-    "bootstrap starter template"
+    "bootstrap starter template",
+    "<%= generatorWebappName %>"
   ],
-  "homepage": "https://github.com/byuksel/bootstrap-backbone-starter-template",
-  "author": {
-    "name": "Baris Yuksel",
-    "url": "http://barisyuksel.com"
-  },
+  "homepage": "<%= generatorWebappWebsite %>",
+  "author": "<%= generatorUserName %>",
   "contributors": [
-    {
-      "name": "Baris Yuksel",
-      "url": "http://barisyuksel.com"
-    }
+    "<%= generatorUserName %>"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/byuksel/bootstrap-backbone-starter-template.git"
+    "url": "https://github.com/<%= generatorUserGithubName %>/<%= generatorWebappNameWithDashes %>.git"
   },
   "devDependencies": {
     "backbone": "^1.2.3",
@@ -41,6 +36,9 @@
     "jscs-jsdoc": "^1.3.1",
     "time-grunt": "*",
     "underscore": "^1.8.3"
+  },
+  "bugs": {
+    "url": "https://github.com/<%= generatorUserGithubName %>/<%= generatorWebappNameWithDashes %>/issues"
   },
   "license": "Apache-2.0"
 }

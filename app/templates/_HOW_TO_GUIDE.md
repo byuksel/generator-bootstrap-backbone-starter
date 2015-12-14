@@ -49,7 +49,8 @@ Once everything is installed, you will see a project structure like below:
 ├── .gitignore                                   # Config file for git to ignore files.
 ├── .jscsrc                                      # Config file for jscs coding style checker.
 ├── Gruntfile.js                                 # File of magic. All grunt tasks are in here.
-├── README.md                                    # This very file.
+├── README.md.template                           # Template for your main README.md file. Replace the contents.
+├── HOW_TO_GUIDE.md                              # This very file.
 ├── assets                                       # Directory which includes all the Bootstrap assets for edge cases.
 │   ├── css
 │   │   └── ie10-viewport-bug-workaround.css
@@ -95,6 +96,10 @@ documentation from the source code.
 #### ./package.json
 
 NPM package.json file. You describe your module in this file. The values for 'name' and 'version' fromthis file are later used in producing README.md file.
+
+#### ./README.md.template
+
+Consumed by Gruntfile's 'replace:readmemd' to produce your app's main README.md file. 
 
 #### ./src/models.js, ./src/views.js, ./src/router.js 
 
@@ -171,9 +176,15 @@ Runs the code through jshint.
 
 Creates an html version of the README.md file called README.md.html.
 
-#### replace:dist
+#### replace
 
-Replaces text patterns in index.html.template.
+* **replace:dist**
+
+Replaces text patterns in index.html.template to produce index.html.
+
+* **replace:readmemd**
+
+Replaces text patterns in README.md.template to produce README.md.
 
 #### watch
 

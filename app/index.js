@@ -2,7 +2,6 @@ var chalk = require('chalk'),
     generators = require('yeoman-generator'),
     us = require('underscore.string');
 
-
 exports = module.exports = generators.Base.extend({
   _copyToDest: function(from, to) {
     this.fs.copy(this.templatePath(from), this.destinationPath(to));
@@ -23,10 +22,10 @@ exports = module.exports = generators.Base.extend({
     var done = this.async();
 
     var prompts = [{
-      name: 'generatorModuleName',
-      message: 'What is your module\'s name ?',
+      name: 'generatorWebappName',
+      message: 'What is your webapp\'s name ?',
       default : this.determineAppname(),
-      desc: 'Name of your module. We will create an app with this name in current directory'
+      desc: 'Name of your webapp. We will create an app with this name in current directory'
     }];
 
     this.prompt(prompts, function (answers) {
@@ -35,28 +34,22 @@ exports = module.exports = generators.Base.extend({
     }.bind(this));
   },
   deriveAnswers: function() {
-    this.answers['generatorModuleClass'] = us.classify(this.answers['generatorModuleName']);
-    this.answers['generatorModuleNameWithDashes'] = us(
-      this.answers['generatorModuleName']).decapitalize().dasherize().value();
+    this.answers['generatorWebappNameWithDashes'] = us(
+      this.answers['generatorWebappName']).decapitalize().dasherize().value();
 
   },
-  askModuleWebsite: function() {
+  askWebappWebsite: function() {
     var done = this.async();
     var prompts = [ {
-      name: 'generatorModuleNameWithDashes',
+      name: 'generatorWebappNameWithDashes',
       message: 'What is your module\'s dasherized name ? Will use this as the main module name:',
-      default : this.answers['generatorModuleNameWithDashes'],
-      desc: 'Main exported class from entry file.'
-    }, {
-      name: 'generatorModuleClass',
-      message: 'What is your module\'s main exported class ?',
-      default : this.answers['generatorModuleClass'],
-      desc: 'Main exported class from entry file.'
-    }, {
-      name: 'generatorModuleDescription',
-      message: 'What is your module\'s description ?',
+      default : this.answers['generatorWebappNameWithDashes'],
+      desc: 'Dasherized name of the webapp'
+    },, {
+      name: 'generatorWebappDescription',
+      message: 'What is your webapp\'s description ?',
       default : this.determineAppname(),
-      desc: 'Description of your module.'
+      desc: 'Description of your webapp.'
     }, {
       name: 'generatorUserEmail',
       message: 'What is your email ?',
@@ -73,10 +66,10 @@ exports = module.exports = generators.Base.extend({
       default : this.user.git.email().split('@')[0],
       desc: 'Your github account name, goes into package.json'
     }, {
-      name: 'generatorModuleWebsite',
-      message: 'What is your module\'s own website ?',
+      name: 'generatorWebappWebsite',
+      message: 'What is your webapp\'s own website ?',
       default : 'http://www.' +
-        this.answers['generatorModuleNameWithDashes'] +
+        this.answers['generatorWebappNameWithDashes'] +
         '.com',
       desc: 'The website for your module, goes into package.json'
     }];
@@ -108,13 +101,16 @@ exports = module.exports = generators.Base.extend({
     this._copyToDest('._jscsrc', '.jscsrc');
     this._copyToDest('_Gruntfile.js', 'Gruntfile.js');
     this._copyToDestWithTemplate('_LICENCE.md', 'LICENCE.md', this.answers);
-    this._copyToDestWithTemplate('_README.md', 'README.md', this.answers);
+    this._copyToDestWithTemplate('_README.md.template', 'README.md.template', this.answers);
+    this._copyToDest('_HOW_TO_GUIDE.md', 'HOW_TO_GUIDE.md');
     this._copyToDest('_jsdoc.conf', 'jsdoc.conf');
     this._copyToDestWithTemplate('_package.json', 'package.json', this.answers);
     // Now directories
     this._copyToDest('_assets/_js/*', 'assets/js/');
     this._copyToDest('_assets/_css/*', 'assets/css/');
-    this._copyToDestWithTemplate('_src/_*', 'src/', this.answers);
+    this._copyToDest('_src/*', 'src/');
+    this._copyToDestWithTemplate('_src/index.html.template', 'src/index.html.template', this.answers);
+    
   },
   installingDependencies: function() {
     this.installDependencies({
@@ -122,9 +118,10 @@ exports = module.exports = generators.Base.extend({
       npm: true,
       callback: function () {
         console.log(chalk.yellow('\nEverything is ready!'));
-        console.log(chalk.yellow('You can type "grunt", and run your unittests, get coverage reports, ' +
-                                 'get browserified and minimized versions of your module/library.'));
-        console.log(chalk.cyan('\nFor more information, refer to HOW_TO_GUIDE.md.'));
+        console.log(chalk.yellow('You can type "grunt", and get your webapp built into dist/.'));
+        console.log(chalk.magenta('cd dist/ and type python -m SimpleHTTPServer 8000'));
+        console.log(chalk.yellow('Go to http://localhost:8000 and voila, your webapp is running!'));
+        console.log(chalk.cyan('\nFor more information, refer to README.md.'));
         console.log(chalk.green('\nEnjoy the ride, and have fun coding!'));
       }
     });

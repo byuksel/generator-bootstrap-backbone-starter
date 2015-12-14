@@ -5,13 +5,13 @@
 Yeoman generator for Bootstrap Starter Template with Backbone.JS. It is the fastest way to start with a Bootstrap project that implements Backbone.JS's Model-View-Router model.
 
 You also get a fully automated document creation from source code, automatic updating of your final
-module/library name and version in README.md, and an html version of your README.md file.
+webapp name and version in README.md, and an html version of your README.md file.
 
 ## Quick Installation
 
 Install `yo`, and `generator-bootstrap-backbone-starter`:
 ```
-npm install -g yo generator-bootstrap-backbone-starter
+npm install -g yo generator-bootstrap-backbone-starter --verbose
 ```
 
 ## Usage
@@ -28,25 +28,24 @@ yo bootstrap-backbone-starter
 
 ## Variables the generator uses ##
 
-* **generatorModuleName:** Module Name. The generator will try to generate a proper name with dashes from this name.
-* **generatorModuleClass:** (Generated but can be changed) Module class name derived from module name. It is the main exported class from your main file.
-* **generatorModuleNameWithDashes:** (Generated but can be changed) Derived name from module name, used as your module's name in package.json, and when creating your entry javascript file under src directory.
-* **generatorModuleDescription:** Module Description. Goes into package.json of your project.
+* **generatorWebappName:** Webapp Name. The generator will try to generate a proper name with dashes from this name.
+* **generatorWebappNameWithDashes:** (Generated but can be changed) Derived name from webapp name, used as your webapp's name in package.json.
+* **generatorWebappDescription:** Webapp Description. Goes into package.json of your project.
 * **generatorUserEmail:** Your email. Goes into package.json file and all the copyright notices in your source files.
 * **generatorUserName:** Your name. Goes into package.json file and all the copyright notices in your source files.
 * **generatorUserGithubName:** Your github account name. Goes into package.json file.
-* **generatorModuleWebsite:** The website for your module. You may want to register this thru a domain registrar.
+* **generatorWebappWebsite:** The website for your webapp. You may want to register this thru a domain registrar.
 
 ## Questions that the generator asks ##
 
-* **'What is your module's name ?':** sets 'generatorModuleName'
-* **'What is your module's dasherized name ? Will use this as the main module name':** sets 'generatorModuleNameWithDashes'
-* **'What is your module's main exported class ?':** sets 'generatorModuleClass'.
-* **'What is your module's description ?':** sets 'generatorModuleDescription'.
+* **'What is your webapp's name ?':** sets 'generatorWebappName'
+* **'What is your webapp's dasherized name ? Will use this as the main webapp name':** sets 'generatorWebappNameWithDashes'
+* **'What is your webapp's main exported class ?':** sets 'generatorWebappClass'.
+* **'What is your webapp's description ?':** sets 'generatorWebappDescription'.
 * **'What is your email ?':** sets 'generatorUserEmail'.
 * **'What is your name ?':** sets 'generatorUserName'.
 * **'What is your github username ?':** sets 'generatorUserGithubName'.
-* **'What is your module's own website ?':** sets 'generatorModuleWebsite'.
+* **'What is your webapp's own website ?':** sets 'generatorWebappWebsite'.
 
 # In-depth Explanation #
 
@@ -77,7 +76,8 @@ Once everything is installed, you will see a project structure like below:
 ├── .gitignore                                   # Config file for git to ignore files.
 ├── .jscsrc                                      # Config file for jscs coding style checker.
 ├── Gruntfile.js                                 # File of magic. All grunt tasks are in here.
-├── README.md                                    # This very file.
+├── HOW_TO_GUIDE.md                              # This very file.
+├── README.md.template                           # Template file for final README.md.
 ├── assets                                       # Directory which includes all the Bootstrap assets for edge cases.
 │   ├── css
 │   │   └── ie10-viewport-bug-workaround.css
@@ -123,7 +123,11 @@ documentation from the source code.
 
 #### ./package.json
 
-NPM package.json file. You describe your module in this file. The values for 'name' and 'version' fromthis file are later used in producing README.md file.
+NPM package.json file. You describe your webapp in this file. The values for 'name' and 'version' fromthis file are later used in producing README.md file.
+
+#### ./README.md.template
+
+Consumed by Gruntfile's 'replace:readmemd' to produce your app's main README.md file.
 
 #### ./src/models.js, ./src/views.js, ./src/router.js 
 
@@ -178,7 +182,7 @@ Deletes js, css and html files created by the project itself.
 
 #### copy
 
-Copies files from various source directories to dist/ directory. Copies external JS libraries from node_modules directory to dist/, asset files from assets/ to dist/, and js/css/html files from src/ to dist/.
+Copies files from various source directories to dist/ directory. Copies external JS libraries from node_webapps directory to dist/, asset files from assets/ to dist/, and js/css/html files from src/ to dist/.
 
 #### flow
 
@@ -200,9 +204,15 @@ Runs the code through jshint.
 
 Creates an html version of the README.md file called README.md.html.
 
-#### replace:dist
+#### replace
 
-Replaces text patterns in index.html.template.
+* **replace:dist**
+
+Replaces text patterns in index.html.template to produce index.html.
+
+* **replace:readmemd**
+
+Replaces text patterns in README.md.template to produce README.md.
 
 #### watch
 
@@ -230,7 +240,8 @@ Description of the variables in projectparams:
 * **docs_dir:** (Generated) Directory for the docs.
 * **dist_dir:** (Generated) Directory for the full fledged web app.
 * **readme_md_html_file:** (Generated) README.md.html file name.
-* **readme_md_text_file:** README.md file name.
+* **readme_md_text_file:** (Generated) README.md file name.
+* **readme_md_template:** Template file name for producing README.md.
 * **src_dir:** Directory where source files are located.
 * **js_dir:** Directory where external JS dependencies are copied into under *dist_dir*
 * **css_dir:** Directory where external CSS dependencies are copied into under *dist_dir*

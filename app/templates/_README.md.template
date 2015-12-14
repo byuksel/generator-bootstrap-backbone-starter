@@ -1,0 +1,16 @@
+# <%= generatorWebappName %> 
+
+[![npm version](https://badge.fury.io/js/<%= generatorWebappNameWithDashes %>.svg)](https://badge.fury.io/js/<%= generatorWebappNameWithDashes %>)
+
+Write an awesome description for your new module here. You can edit this file and its contents for
+your final README.md file. This template will go through the "replace:dist" step of the Gruntfile
+which replaces variables in this file (you can add more if you like).
+
+In this file you will see links to http://badge.fury.io. It reads your npm package version and shows it on your README.md file. In order this to work you will need to publish your app on npm by typing:
+```
+npm publish
+```
+
+## Website ##
+
+* [ <%= generatorWebappName %> @@pkg_version, 4.4K : <%= generatorWebappWebsite %>](<%= generatorWebappWebsite %>)

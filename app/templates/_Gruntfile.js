@@ -11,6 +11,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),  // Parse package.json info
     projectparams: {   // These are the parameters for our project
       // README parameters
+      readme_md_template: './README.md.template',
       readme_md_text_file: './README.md',
       readme_md_html_file: './README.md.html',
       // Various directories
@@ -125,7 +126,19 @@ module.exports = function(grunt) {
       }
     },
     replace: {
-      // Replace distribution related variables to produce README.md
+      // Replace README.md.template to produce README.md
+      readmemd: {
+        options: {
+          patterns: [
+            {
+              json: {
+                'pkg_version': '<%= pkg.version %>'
+              }
+            }]},
+        src: '<%= projectparams.readme_md_template %>',
+        dest: '<%= projectparams.readme_md_text_file %>'
+      },
+      // Replace distribution related variables to produce README.md 
       dist: {
         options: {
           patterns: [

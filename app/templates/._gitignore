@@ -4,9 +4,6 @@
 # Ignore Emacs auto rescue files
 **/#*#
 **/.#*
-archive
-test/output/*
-examples/**/*
 dist/**/*
 # Ignore npm stuff
 npm-debug.log
