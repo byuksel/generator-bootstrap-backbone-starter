@@ -1,10 +1,11 @@
 {
   "name": "generator-bootstrap-backbone-starter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Yeoman generator for Bootstrap and Backbone starter project. It uses Bootstrap, Backbone, JSHint, JSCS, Flow and Watch.",
   "files": [
     "app"
   ],
+  "homepage": "https://github.com/byuksel/generator-bootstrap-backbone-starter",
   "keywords": ["yeoman-generator", "bootstrap", "backbone", "backbonejs",
                "bootstrap starter template", "jscs", "jshint"],
   "dependencies": {
@@ -13,9 +14,15 @@
     "yeoman-generator": "^0.20.2"
   },
   "license": "Apache-2.0",
-  "author": "Baris Yuksel (http://barisyuksel.com)",
+  "author": {
+    "name": "Baris Yuksel",
+    "url": "http://barisyuksel.com"
+  },
   "contributors": [
-    "Baris Yuksel (http://barisyuksel.com)"
+    { 
+      "name": "Baris Yuksel",
+      "url": "http://barisyuksel.com"
+    }
   ],
   "repository": {
     "type": "git",
